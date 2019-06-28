@@ -202,7 +202,7 @@ class Queue extends \yii\queue\cli\Queue
                 $response->getMessageId(),
                 $response->getMessageBody(),
                 0,
-                (time() - ($response->getEnqueueTime() / 1000)),
+                round((((microtime(true) * 1000) - $response->getEnqueueTime()) / 1000), 3),
                 $response->getReceiptHandle()
             ];
         }catch(MessageNotExistException $e){
